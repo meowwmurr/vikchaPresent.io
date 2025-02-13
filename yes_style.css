@@ -8,10 +8,6 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-.container {
-    text-align: center;
-}
-
 .header_text {
     font-size: 3em;
     color: #d32f2f;
@@ -53,14 +49,14 @@ body {
     text-shadow: 2px 2px 4px rgba(255, 107, 129, 0.2);
 }
 
-.gif_container {
+.gif_container1 {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.gif_container img {
+.gif_container img1 {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
