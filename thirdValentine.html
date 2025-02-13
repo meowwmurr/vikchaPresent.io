@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>вииикча</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Добавлено для адаптации под мобильные устройства -->
+    <!-- Позволяет корректно масштабировать страницу на мобильных устройствах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,6 +24,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .envlope-wrapper {
+            height: 380px; /* фиксированная высота, чтобы не сбивались анимации */
+            margin-top: 50px;
+            animation: float 3s ease-in-out infinite;
         }
 
         #envelope {
@@ -95,7 +103,6 @@
             color: #d46a84;
             text-align: center;
             line-height: 1;
-            padding-top: 0px;
         }
 
         .message p {
@@ -105,14 +112,12 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .envlope-wrapper {
-            height: 380px;
-            margin-top: 50px;
-            animation: float 3s ease-in-out infinite;
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .open .flap {
@@ -147,8 +152,18 @@
             border-radius: 5px;
             z-index: 3;
         }
-        .corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-        .corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+        .corner-tl {
+            top: 10px; 
+            left: 10px;
+            border-right: none; 
+            border-bottom: none;
+        }
+        .corner-br {
+            bottom: 10px; 
+            right: 10px; 
+            border-left: none; 
+            border-top: none;
+        }
 
         .hearts, .sparkles {
             position: absolute;
@@ -203,10 +218,12 @@
             transform: scale(0.6);
             animation: slideUp 4s linear infinite, sideSway 2s ease-in-out infinite alternate;
         }
+
         .a2 {
             left: 55%;
             animation: slideUp 5s linear infinite, sideSway 4s ease-in-out infinite alternate;
         }
+
         .a3 {
             left: 10%;
             transform: scale(0.8);
@@ -217,10 +234,12 @@
             left: 30%;
             animation: sparkleUp 3s linear infinite;
         }
+
         .s2 {
             left: 60%;
             animation: sparkleUp 4s linear infinite;
         }
+
         .s3 {
             left: 45%;
             animation: sparkleUp 5s linear infinite;
@@ -273,39 +292,21 @@
             box-shadow: 0 7px 25px rgba(0,0,0,0.2);
         }
 
-        /* ===== Медиазапросы для адаптации на мобильных устройствах ===== */
-        @media (max-width: 600px) {
+        /* Адаптация под мобильные: уменьшаем масштаб конверта для узких экранов */
+        @media (max-width: 500px) {
             .envlope-wrapper {
+                /* убираем "плавание", чтобы конверт точно влез в экран */
+                animation: none; 
                 margin-top: 20px;
-                height: auto;
-                animation: none; /* Можно отключить "плавание" на маленьких экранах */
+                /* Масштабируем конверт целиком, чтобы не ломать треугольные бордеры */
+                transform: scale(0.85);
+                transform-origin: top center;
+                height: auto; /* чтобы блок не съезжал за границы */
             }
 
+            /* Уменьшаем верхний отступ конверта, чтобы он не "сползал" за экран */
             #envelope {
-                width: 90%;
-                height: auto;
-                top: 100px;
-            }
-
-            /* Масштабируем треугольные элементы конверта */
-            .flap, .pocket {
-                border-left: 45% solid transparent;
-                border-right: 45% solid transparent;
-            }
-            .pocket {
-                border-left: 45% solid var(--color-env);
-                border-right: 45% solid var(--color-env);
-            }
-
-            .letter {
-                width: 95%;
-                height: auto;
-                top: 4%;
-            }
-
-            /* Уменьшаем немного шрифт */
-            .message p {
-                font-size: 1.5em;
+                top: 0;
             }
         }
     </style>
@@ -320,8 +321,8 @@
             <div class="letter-corner corner-tl"></div>
             <div class="letter-corner corner-br"></div>
             <div class="message">
-                <p>Я тебя люблю</p>
-                <p>солнышко</p>
+                <p>I love you,</p>
+                <p>most ardently</p>
             </div>
         </div>
         <div class="hearts">
@@ -337,8 +338,8 @@
     </div>
 </div>
 <div class="reset">
-    <button id="open">открыыть</button>
-    <button id="reset">закрыыыть</button>
+    <button id="open">Open Envelope</button>
+    <button id="reset">Close Envelope</button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
