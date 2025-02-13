@@ -50,7 +50,6 @@ function nextPage1() {
 // Function to make the 'No' button move to random positions with animations
 function moveButton() {
     const button = document.getElementById('noButton');
-
     const maxX = window.innerWidth - button.offsetWidth;
     const maxY = window.innerHeight - button.offsetHeight;
 
